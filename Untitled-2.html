@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>Dz</title>
+    <style>
+        body {margin: 0;
+            background-color: #ddd;}
+        pupu {color: rgb(0, 0, 0);
+            text-align: center;
+            font-size: 25px;}
+        
+        .osn {display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(170, 24, 24);
+            padding: 10px;}
+        .osn a {color: rgb(0, 0, 0);
+            margin: 10px;
+            font-size: 15px;
+            padding: 5px 10px;}
+        .osn a:hover {background: #ddd;
+            }
+        .osn .mesto-vibrat {background: #007bff;
+            color: white; 
+            padding: 5px;
+            font-size: 16px;
+            max-width: 150px;}
+        .product {padding: 20px;
+            max-width: 2000px;
+            margin: 50px auto;
+            background: white;}
+        .hidden {display: none; }
+        .c-t { width: 100%;
+            margin-top: 20px; }
+        .c-t th, .c-t td {padding: 8px;
+            text-align: center; 
+            overflow: hidden;}
+        .c-t th { background: rgb(170, 24, 24); 
+            color: white; }
+        .c-t img { width: 50px; 
+            height: auto; }
+        button { background:rgb(170, 24, 24); 
+            color: white; 
+            padding: 10px; 
+            }
+        button:hover { background: rgb(170, 24, 24); }
+        input, select, textarea { width: 100%; 
+            padding: 8px; 
+            margin: 5px 0; 
+            }
+        .ct-m {position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background: white; 
+            padding: 20px; 
+            display: none; 
+            z-index: 1000;}
+            .highlight {
+        background-color: yellow; /* Или любой другой цвет выделения */
+    }
+        .cart-overlay {position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;  
+            display: none; 
+            z-index: 999;}
+        input[type="number"] {width: 50px; 
+            text-align: center; 
+            padding: 5px;}
+        .category-select {background: rgb(107, 12, 12); 
+            color: white; 
+            padding: 5px;  
+            width: 200px;}
+        .products-container {display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; margin-top: 20px;}
+        .product-card {
+            padding: 15px; 
+            text-align: center; 
+            background: #f9f9f9; 
+            min-width: 220px;}
+        .product-card:hover {transform: scale(1.2);}
+        .product-card:hover p:not(:last-child) {font-weight: bold;}
+        .product-card img {width: 200px; 
+            height: 200px; 
+            object-fit: contain;}
+        .product-card button {background: #28a745; 
+            color: white; 
+
+            padding: 5px; }
+        .menu a.active {background: #007bff;
+            color: white; }
+        #welcome {text-align: center;}
+        .ssh {width: 100%; 
+            overflow: hidden; 
+            margin-top: 20px; 
+            max-width: 2000px;}
+        .sls {display: flex; 
+            width: calc(300px * 12); 
+            animation: slide 10s infinite linear;}
+        .sls img {width: 300px; 
+            height: 200; 
+            }
+        @keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+    </style>
+</head>
+<body>
+    <pupu>
+        <h1 onclick="showPage('1')">Интернет магазин</h1>
+    </pupu>
+
+    <div class="osn">
+        <select class="mesto-vibrat" id="gorod-vibrat">
+            <option>Москва</option>
+            <option>Тула</option>
+            <option>Калуга</option>
+            <option>Орёл</option>
+            <option>Казань</option>
+            <option>Курск</option>
+            <option>Пенза</option>
+        </select>
+        <a onclick="showPage('m2')">Обратная связь</a>
+        <a onclick="showPage('m3')">Контакты</a>
+        <a onclick="showPage('m4')">Оплата</a>
+        <select class="category-select" id="category-select" onchange="viborp()">
+            <option value="" disabled selected>Каталог</option>
+            <option value="shkafi">Шкафы</option>
+            <option value="polki">Полки</option>
+            <option value="stoli">Столы</option>
+        </select>
+        <a onclick="korz(true)">Корзина</a>
+    </div>
+
+    <div id="1" class="product hidden">
+        <h2>Товары по скидке:</h2>
+        <div class="ssh">
+            <div class="sls">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-3/wc1000/7152129795.jpg" alt="Slide 1">
+                <img src="https://ir.ozone.ru/s3/multimedia-i/wc1000/6819875982.jpg" alt="Slide 2">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-2/wc1000/7300387550.jpg" alt="Slide 3">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-3/wc1000/7152129795.jpg" alt="Slide 1">
+                <img src="https://ir.ozone.ru/s3/multimedia-i/wc1000/6819875982.jpg" alt="Slide 2">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-2/wc1000/7300387550.jpg" alt="Slide 3">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-3/wc1000/7152129795.jpg" alt="Slide 1">
+                <img src="https://ir.ozone.ru/s3/multimedia-i/wc1000/6819875982.jpg" alt="Slide 2">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-2/wc1000/7300387550.jpg" alt="Slide 3">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-3/wc1000/7152129795.jpg" alt="Slide 1">
+                <img src="https://ir.ozone.ru/s3/multimedia-i/wc1000/6819875982.jpg" alt="Slide 2">
+                <img src="https://ir.ozone.ru/s3/multimedia-1-2/wc1000/7300387550.jpg" alt="Slide 3">
+                
+            </div>
+        </div>
+    </div>
+    
+    <div id="m2" class="product hidden" style="width: 500px;">
+        <h2>Обратная связь</h2>
+        <form id="m2-form">
+            <label>Тип вопроса:</label>
+            <select>
+                <option value="" disabled selected>Выберите тип вопроса</option>
+                <option>Возрат средств</option>
+                <option>Оплата товара</option>
+                <option>Доставка товара</option>
+                <option>Оказание услуги</option>
+            </select><br>
+            <label>Сообщение:</label>
+            <textarea></textarea><br>
+            <label>Вложенные файлы:</label>
+            <input type="file"><br>
+            <label>Город:</label>
+            <select>
+                <option value="" disabled selected>Выберите город</option>
+                <option>Москва</option>
+                <option>Тула</option>
+                <option>Калуга</option>
+                <option>Орёл</option>
+                <option>Казань</option>
+                <option>Курск</option>
+                <option>Пенза</option>
+            </select><br>
+            <label>Имя:</label>
+            <input type="text"><br>
+            <label>E-mail:</label>
+            <input type="email"><br>
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+    
+    <div id="m3" class="product hidden" style="width: 1300px;">
+        <h2>Контакты</h2>
+        <p>Центральный офис:
+            Пресненская набережная, 10 блок С, Москва, Россия, 123 112
+            +7 495 232-10-00</p>
+        <p>Связи с инвесторами:
+            Петушков Петя,
+            Директор по связям с инвесторами
+            </p>
+        <p>Связи с общественностью и СМИ:
+            Иванов Иван,
+            Директор по связям с общественностью и индустрией</p>
+    </div>
+    
+    <div id="m4" class="product hidden" style="width: 1300px;">
+        <h2>Оплата</h2>
+        <p>Совершение покупки происходит по стандартному алгоритму:</p>
+
+        <p>Выбрать и отправить товары в Корзину.</p>
+        <p>Войти в Корзину, там — «Перейти к оформлению».</p>
+        <p>Находясь на главной странице сайта, перейти к выбору города для пункта выдачи.</p>
+        <p>Указать пункт выдачи.</p>
+        <p>Прийти на пункт выдачи и оплатить товар.</p>
+    </div>
+    
+    <div id="catalog" class="product hidden" style="width: 1800px;">
+        <h2>Каталог</h2>
+        <div id="products"></div> <!-- Контейнер для товаров -->
+    </div>
+    
+    <div class="cart-overlay" onclick="korz(false)"></div>
+<div class="ct-m" id="ct-m">
+    <h2>Корзина</h2>
+    <table class="c-t" id="cart">
+        <tr>
+            <th>№п/п</th>
+            <th>Категория</th>
+            <th>Наименование</th>
+            <th>Фото</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Удалить</th>
+        </tr>
+        <div>
+            <button onclick="showEveryThird()">Показать каждый третий элемент</button>
+            <button onclick="showEveryFourthFromSecond()">Показать каждый четвёртый элемент начиная со второго</button>
+            <button onclick="showMinPrice()">Показать элемент с минимальной стоимостью</button>
+            <button onclick="sortByPrice()">Выполнить сортировку по наименьшей стоимости</button>
+            <button onclick="showFirstThreeRows()">Показать первые три строки таблицы</button>
+            <button onclick="showLastRow()">Показать последнюю строку</button>
+        </div>
+    </table>
+    <p>Итого: <span id="total">0</span> руб.</p>
+    <button onclick="clearCart()">Очистить корзину</button>
+    <button onclick="korz(false)">Закрыть</button>
+</div>
+    
+    <script>
+        function highlightRows(selector) {
+        document.querySelectorAll("#cart tr").forEach(row => row.classList.remove("highlight"));
+        document.querySelectorAll(selector).forEach(row => row.classList.add("highlight"));
+        }
+
+        function showEveryThird() {
+            highlightRows("#cart tr:nth-child(3n+1)");
+        }
+
+        function showEveryFourthFromSecond() {
+            highlightRows("#cart tr:nth-child(4n+3)");
+        }
+
+        function showMinPrice() {
+            let rows = Array.from(document.querySelectorAll("#cart tr")).slice(1); // Берём все строки, кроме заголовка
+            if (rows.length === 0) return; // Если корзина пуста, ничего не делаем
+
+            let minRow = rows[0]; // Первая строка как начальный минимум
+            let minPrice = parseInt(minRow.cells[4].textContent); 
+
+            rows.forEach(row => {
+                let price = parseInt(row.cells[4].textContent);
+                if (price < minPrice) {
+                    minPrice = price;
+                    minRow = row;
+                }
+            });
+            highlightRows(`#cart tr:nth-child(${minRow.rowIndex + 1})`); // Подсвечиваем строку
+        }
+
+
+        function sortByPrice() {
+            let rows = Array.from(document.querySelectorAll("#cart tr")).slice(1);
+            rows.sort((a, b) => parseInt(a.cells[4].textContent) - parseInt(b.cells[4].textContent));
+            rows.forEach(row => document.getElementById("cart").appendChild(row));
+        }
+
+        function showFirstThreeRows() {
+            highlightRows("#cart tr:nth-child(2), #cart tr:nth-child(3), #cart tr:nth-child(4)");
+        }
+
+        function showLastRow() {
+            highlightRows("#cart tr:last-child");
+        }
+
+        
+        function showPage(page) {
+            document.querySelectorAll('.product').forEach(div => div.classList.add('hidden'));
+            document.getElementById(page).classList.remove('hidden');
+            document.querySelectorAll('.menu a').forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`.menu a[onclick="showPage('${page}')"]`);
+            if (activeLink) {
+        activeLink.classList.add('active');
+    }
+    }   
+
+        
+    function viborp() {
+        const category = document.getElementById("category-select").value;
+        const productsDiv = document.getElementById("products");
+
+        if (!category) {
+            return;
+        }
+
+        showPage('catalog');
+
+        const products = {
+            shkafi: [
+                { name: "Шкаф диал", desc: "Удобный, вместительный распашной шкаф. Позволяет хранить все ваши личные вещи, тяжелые и легкие.", price: 50000, img: "https://ir.ozone.ru/s3/multimedia-1-s/wc1000/7292009404.jpg" },
+                { name: "Шкаф Алиса", desc: "✔Отсутствие ручек сохраняет эстетичный внешний вид.✔Материал экологичный, сертифицированный, соблюдены все Госты.", price: 25000, img: "https://ir.ozone.ru/s3/multimedia-i/wc1000/6819875982.jpg" },
+                { name: "Шкаф икеа", desc: "Распашной шкаф ИКЕА Пакс 31 Фардал оборудован 13 полками и штангой, что поможет разместить максимум ваших вещей. Современный и эстетичный дизайн шкафа, станет отличным дополнением любой комнаты.", price: 10000, img: "https://ir.ozone.ru/s3/multimedia-1-s/wc1000/7367453272.jpg" },
+                { name: "Шкаф ирен", desc: "Шкаф представляет собой стильное и функциональное решение для организации пространства в вашем доме. С тремя распашными дверями и элегантными алюминиевыми торцевыми ручками модели АЛДИ", price: 15000, img: "https://ir.ozone.ru/s3/multimedia-1-l/wc1000/7292587341.jpg" }
+            ],
+            polki: [
+                { name: "Полка асти", desc: "ИДЕАЛЬНО подойдет для декора интерьера Ваших комнат. Полочки сочетают в себе ПРИВЛЕКАТЕЛЬНЫЙ дизайн и функциональность. ", price: 800, img: "https://ir.ozone.ru/s3/multimedia-1-2/wc1000/7300387550.jpg" },
+                { name: "Деревянная полка", desc: "Представляем вам стильную полку IamLoft, которая станет отличным дополнением к вашему интерьеру в духе лофт", price: 1500, img: "https://ir.ozone.ru/s3/multimedia-1-2/wc1000/6923737298.jpg" },
+                { name: "Полка куки", desc: "Хорошо украсит ваш интерьер", price: 1200, img: "https://ir.ozone.ru/s3/multimedia-1-j/wc1000/7302158587.jpg" },
+                { name: "Полка настенная", desc: "Этот предмет мебели отлично впишется в любое пространство, добавляя функциональности и стиля. Полка выполнена в элегантном белом цвете, что позволяет ей легко сочетаться с различными цветовыми палитрами и стилевыми решениями.", price: 1800, img: "https://ir.ozone.ru/s3/multimedia-1-4/wc1000/7251156760.jpg" }
+            ],
+            stoli: [
+                { name: "Стол письменный", desc: "Стильный письменный стол компьютерный стол с ярко выраженным рисунком дерева серия CraftWooD от компании Mebel&InterioR.", price: 7600, img: "https://ir.ozone.ru/s3/multimedia-1-0/wc1000/7380883836.jpg" },
+                { name: "Стол обеденный", desc: "Стильный и современный стол кухонный стол обеденный серия SnowWhite (название декора ЛДСП - Белоснежный) от компании Mebel&InterioR.", price: 3500, img: "https://ir.ozone.ru/s3/multimedia-1-k/wc1000/7391100512.jpg" },
+                { name: "Стол пом-пом", desc: "Письменный стол является неотъемлемой частью любого дома. Размеры стола: высота 75 см, ширина 75см, глубина 40 см.", price: 14900, img: "https://ir.ozone.ru/s3/multimedia-1-x/wc1000/6934664661.jpg" },
+                { name: "Компьютерный стол", desc: "Компьютерный столик с возможностью изменения высоты.", price: 21100, img: "https://ir.ozone.ru/s3/multimedia-1-v/wc1000/7388101939.jpg" }
+            ]
+        };
+
+        productsDiv.innerHTML = `<div class="products-container">` + 
+            products[category].map(p => `
+                <div class="product-card">
+                    <img src="${p.img}" alt="${p.name}">
+                    <h3>${p.name}</h3>
+                    <p>${p.desc}</p>
+                    <p><b>${p.price} руб.</b></p>
+                    <input type="number" value="1" min="1" id="qty-${p.name}">
+                    <button onclick="addToCart('${category}', '${p.name}', ${p.price}, '${p.img}')">Добавить в корзину</button>
+                </div>
+            `).join('') +
+            `</div>`;
+}
+        
+function addToCart(category, name, price, img) {
+    const cart = document.getElementById("cart");
+    let existingRow = null;
+    let quantity = parseInt(document.getElementById(`qty-${name}`).value);
+
+    document.querySelectorAll("#cart tr").forEach((row, index) => {
+        if (index > 0 && row.cells[1].textproduct === category && row.cells[2].textproduct === name) {
+            existingRow = row;
+        }
+    });
+
+    if (existingRow) {
+        let quantityInput = existingRow.cells[5].querySelector("input");
+        quantityInput.value = parseInt(quantityInput.value) + quantity;
+    } else {
+        const row = cart.insertRow();
+        row.innerHTML = `<td>${cart.rows.length - 1}</td>
+                         <td>${category}</td>
+                         <td>${name}</td>
+                         <td><img src="${img}" alt="${name}" width="50"></td>
+                         <td>${price}</td>
+                         <td><input type="number" value="${quantity}" min="1" oninput="updateTotal()"></td>
+                         <td><button onclick="this.parentNode.parentNode.remove(); updateTotal();">Удалить</button></td>`;
+    }
+
+    updateTotal();
+}
+        
+    function updateTotal() {
+        let total = 0;
+        document.querySelectorAll("#cart tr").forEach((row, index) => {
+            if (index > 0) total += parseInt(row.cells[4].textContent) * row.cells[5].querySelector("input").value;
+            });
+            document.getElementById("total").textContent = total;
+    }
+        
+        function clearCart() {
+            document.querySelectorAll("#cart tr:not(:first-child)").forEach(row => row.remove());
+            updateTotal();
+        }
+
+        function korz(show) {
+            document.getElementById("ct-m").style.display = show ? "block" : "none";
+            document.querySelector(".cart-overlay").style.display = show ? "block" : "none";
+        }
+        
+        window.onload = function() {
+            showPage('1');
+        };
+
+    document.getElementById("m2-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const type = this.querySelector("select").value;
+        const message = this.querySelector("textarea").value;
+        const file = this.querySelector("input[type='file']").files[0]?.name || "Файл не выбран";
+        const city = this.querySelectorAll("select")[1].value;
+        const name = this.querySelector("input[type='text']").value;
+        const email = this.querySelector("input[type='email']").value;
+            
+        if (!type || !message || !city || !name || !email) {
+            alert("Все поля должны быть заполнены!");
+            return;
+        }
+        else {
+            alert(`Тип вопроса: ${type}\nСообщение: ${message}\nФайл: ${file}\nИгра: ${city}}\nИмя: ${name}\nE-mail: ${email}`);
+        }
+    });
+    </script>
+</body>
+</html>
